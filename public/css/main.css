@@ -2558,6 +2558,9 @@ input.num-product::-webkit-inner-spin-button {
 .size-203 {
   width: 105px;
 }
+.wid-full {
+    width: 100%;
+}
 
 .size-204 {
   width: calc(100% - 105px);
@@ -3327,6 +3330,10 @@ input.num-product::-webkit-inner-spin-button {
   /*---------------------------------------------*/
   .respon3 {
     padding: 20px;
+  }
+
+  .inpu_radio{
+      margin-left: 2%;
   }
 
 }

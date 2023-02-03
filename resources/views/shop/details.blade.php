@@ -262,7 +262,7 @@
                                     <!-- Review -->
                                     <div class="flex-w flex-t p-b-68">
                                         <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-                                            <img src="images/avatar-01.jpg" alt="AVATAR">
+                                            <img src="{{asset('images/avatar-01.jpg')}}" alt="AVATAR">
                                         </div>
 
                                         <div class="size-207">
@@ -289,16 +289,16 @@
                                     <!-- Add review -->
                                     <form class="w-full">
                                         <h5 class="mtext-108 cl2 p-b-7">
-                                            Add a review
+                                            Adicione o seu review
                                         </h5>
 
                                         <p class="stext-102 cl6">
-                                            Your email address will not be published. Required fields are marked *
+                                            Seu endereço de e-mail não será publicado. Os campos obrigatórios estão marcados*
                                         </p>
 
                                         <div class="flex-w flex-m p-t-50 p-b-23">
 												<span class="stext-102 cl3 m-r-16">
-													Your Rating
+													Sua avaliação
 												</span>
 
                                             <span class="wrap-rating fs-18 cl11 pointer">
@@ -313,12 +313,12 @@
 
                                         <div class="row p-b-25">
                                             <div class="col-12 p-b-5">
-                                                <label class="stext-102 cl3" for="review">Your review</label>
+                                                <label class="stext-102 cl3" for="review">Seu review</label>
                                                 <textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10" id="review" name="review"></textarea>
                                             </div>
 
                                             <div class="col-sm-6 p-b-5">
-                                                <label class="stext-102 cl3" for="name">Name</label>
+                                                <label class="stext-102 cl3" for="name">Nome</label>
                                                 <input class="size-111 bor8 stext-102 cl2 p-lr-20" id="name" type="text" name="name">
                                             </div>
 
@@ -329,7 +329,7 @@
                                         </div>
 
                                         <button class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
-                                            Submit
+                                            Enviar
                                         </button>
                                     </form>
                                 </div>
