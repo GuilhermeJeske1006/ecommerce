@@ -63,7 +63,7 @@
                         </h4>
 
                         <span class="mtext-106 cl2">
-								$58.79
+								R$58,79
 							</span>
 
                         <p class="stext-102 cl3 p-t-23">
@@ -74,17 +74,17 @@
                         <div class="p-t-33">
                             <div class="flex-w flex-r-m p-b-10">
                                 <div class="size-203 flex-c-m respon6">
-                                    Size
+                                    Tamanho
                                 </div>
 
                                 <div class="size-204 respon6-next">
                                     <div class="rs1-select2 bor8 bg0">
                                         <select class="js-select2" name="time">
-                                            <option>Choose an option</option>
-                                            <option>Size S</option>
-                                            <option>Size M</option>
-                                            <option>Size L</option>
-                                            <option>Size XL</option>
+                                            <option>Selecione o tamanho</option>
+                                            <option>P</option>
+                                            <option>M</option>
+                                            <option>G</option>
+                                            <option>GG</option>
                                         </select>
                                         <div class="dropDownSelect2"></div>
                                     </div>
@@ -93,17 +93,17 @@
 
                             <div class="flex-w flex-r-m p-b-10">
                                 <div class="size-203 flex-c-m respon6">
-                                    Color
+                                    Cor
                                 </div>
 
                                 <div class="size-204 respon6-next">
                                     <div class="rs1-select2 bor8 bg0">
                                         <select class="js-select2" name="time">
-                                            <option>Choose an option</option>
-                                            <option>Red</option>
-                                            <option>Blue</option>
-                                            <option>White</option>
-                                            <option>Grey</option>
+                                            <option>Selecione a cor</option>
+                                            <option>Azul</option>
+                                            <option>Amarelo</option>
+                                            <option>Branco</option>
+                                            <option>Verde</option>
                                         </select>
                                         <div class="dropDownSelect2"></div>
                                     </div>
@@ -125,7 +125,7 @@
                                     </div>
 
                                     <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-                                        Add to cart
+                                        Adicionar ao carrinho
                                     </button>
                                 </div>
                             </div>

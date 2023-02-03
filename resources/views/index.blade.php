@@ -1,5 +1,6 @@
 @extends('components.body')
-@component('Home.top')@endcomponent
+@component('components.topWhite')@endcomponent
+
 @section('body')
     @component('Home.index')@endcomponent
 @endsection

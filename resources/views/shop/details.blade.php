@@ -32,9 +32,9 @@
                         <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
                         <div class="slick3 gallery-lb">
-                            <div class="item-slick3" data-thumb="images/product-detail-01.jpg">
+                            <div class="item-slick3" data-thumb="{{asset('images/product-detail-01.jpg')}}">
                                 <div class="wrap-pic-w pos-relative">
-                                    <img src="images/product-detail-01.jpg" alt="IMG-PRODUCT">
+                                    <img src="{{asset('images/product-detail-01.jpg')}}" alt="IMG-PRODUCT">
 
                                     <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
                                         <i class="fa fa-expand"></i>
@@ -73,7 +73,7 @@
                     </h4>
 
                     <span class="mtext-106 cl2">
-							$58.79
+							R$58,79
 						</span>
 
                     <p class="stext-102 cl3 p-t-23">
@@ -84,17 +84,17 @@
                     <div class="p-t-33">
                         <div class="flex-w flex-r-m p-b-10">
                             <div class="size-203 flex-c-m respon6">
-                                Size
+                                Tamanho
                             </div>
 
                             <div class="size-204 respon6-next">
                                 <div class="rs1-select2 bor8 bg0">
                                     <select class="js-select2" name="time">
-                                        <option>Choose an option</option>
-                                        <option>Size S</option>
-                                        <option>Size M</option>
-                                        <option>Size L</option>
-                                        <option>Size XL</option>
+                                        <option>Selecione o tamanho</option>
+                                        <option>P</option>
+                                        <option>M</option>
+                                        <option>G</option>
+                                        <option>GG</option>
                                     </select>
                                     <div class="dropDownSelect2"></div>
                                 </div>
@@ -103,17 +103,17 @@
 
                         <div class="flex-w flex-r-m p-b-10">
                             <div class="size-203 flex-c-m respon6">
-                                Color
+                                Cor
                             </div>
 
                             <div class="size-204 respon6-next">
                                 <div class="rs1-select2 bor8 bg0">
                                     <select class="js-select2" name="time">
-                                        <option>Choose an option</option>
-                                        <option>Red</option>
-                                        <option>Blue</option>
-                                        <option>White</option>
-                                        <option>Grey</option>
+                                        <option>Selecione a cor</option>
+                                        <option>Vermelho</option>
+                                        <option>Azul</option>
+                                        <option>Branco</option>
+                                        <option>Verde</option>
                                     </select>
                                     <div class="dropDownSelect2"></div>
                                 </div>
@@ -135,8 +135,9 @@
                                 </div>
 
                                 <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-                                    Add to cart
+                                    Adicionar ao carrinho
                                 </button>
+
                             </div>
                         </div>
                     </div>
@@ -171,15 +172,15 @@
                 <!-- Nav tabs -->
                 <ul class="nav nav-tabs" role="tablist">
                     <li class="nav-item p-b-10">
-                        <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Description</a>
+                        <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Descrição</a>
                     </li>
 
                     <li class="nav-item p-b-10">
-                        <a class="nav-link" data-toggle="tab" href="#information" role="tab">Additional information</a>
+                        <a class="nav-link" data-toggle="tab" href="#information" role="tab">Informação do produto</a>
                     </li>
 
                     <li class="nav-item p-b-10">
-                        <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews (1)</a>
+                        <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews</a>
                     </li>
                 </ul>
 

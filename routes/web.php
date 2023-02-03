@@ -19,6 +19,8 @@ Route::get('/produtos', [\App\Http\Controllers\ShopController::class, 'index'])-
 Route::get('/sobre', [\App\Http\Controllers\AboutController::class, 'index'])->name('sobre');
 Route::get('/contato', [\App\Http\Controllers\ContactController::class, 'index'])->name('contato');
 Route::get('/checkout', [\App\Http\Controllers\ShopController::class, 'Check'])->name('checkout');
+Route::get('/detalhes/{id}', [\App\Http\Controllers\ShopController::class, 'Details'])->name('details');
+
 
 
 Route::middleware([

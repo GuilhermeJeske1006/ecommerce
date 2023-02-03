@@ -13,4 +13,8 @@ class ShopController extends Controller
     public function Check(){
         return view('CheckOut.index');
     }
+
+    public function Details($id){
+        return view('shop.details');
+    }
 }
