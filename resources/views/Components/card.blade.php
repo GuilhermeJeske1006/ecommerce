@@ -2,7 +2,7 @@
     <!-- Block2 -->
     <div class="block2">
         <div class="block2-pic hov-img0">
-            <img src="images/product-01.jpg" alt="IMG-PRODUCT">
+            <img src="{{asset($prod->foto)}}" alt="IMG-PRODUCT">
 
             <a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                 Adicionar
@@ -11,12 +11,12 @@
 
         <div class="block2-txt flex-w flex-t p-t-14">
             <div class="block2-txt-child1 flex-col-l ">
-                <a href="/detalhes/1" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                    MACACÃO MASCULINO MANGA LONGA PRANCHA MARINHO
+                <a href="{{route('details',  [$prod->id])}}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                    {{$prod->nome}}
                 </a>
 
                 <span class="stext-105 cl3">
-					R$16,64
+					<b>R${{$prod->valor}}</b> Ou 6x de R$17,64
 				</span>
             </div>
 
@@ -29,3 +29,5 @@
         </div>
     </div>
 </div>
+
+@component('components.modalDetails')@endcomponent

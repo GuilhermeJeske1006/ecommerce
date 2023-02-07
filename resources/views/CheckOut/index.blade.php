@@ -1,7 +1,7 @@
 <!-- breadcrumb -->
 @extends('components.body')
 @section('body')
-    @component('components.topWhite')@endcomponent
+    @component('components.topWhite', ['carrinho' => $carrinho])@endcomponent
 <div class="container">
     <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
         <a href="{{route('index')}}" class="stext-109 cl8 hov-cl1 trans-04">
@@ -30,16 +30,18 @@
                                 <th class="column-3">Preço</th>
                                 <th class="column-4">Quantidade</th>
                                 <th class="column-5">Total</th>
+                                <th class="column-6"></th>
                             </tr>
+                            @foreach($carrinho as $indice => $cart)
 
                             <tr class="table_row">
                                 <td class="column-1">
                                     <div class="how-itemcart1">
-                                        <img src="{{asset('images/item-cart-04.jpg')}}" alt="IMG">
+                                        <img src="{{asset($cart->foto)}}" alt="IMG">
                                     </div>
                                 </td>
-                                <td class="column-2">Fresh Strawberries</td>
-                                <td class="column-3">R$ 36,00</td>
+                                <td class="column-2">{{$cart->nome}}</td>
+                                <td class="column-3">R$ {{$cart->valor}}</td>
                                 <td class="column-4">
                                     <div class="wrap-num-product flex-w m-l-auto m-r-0">
                                         <div class="btn-num-product-down cl8 hov-btn3 trans-04 flex-c-m">
@@ -54,7 +56,14 @@
                                     </div>
                                 </td>
                                 <td class="column-5">R$ 36,00</td>
+                                <td class="column-6">
+                                    <a href="{{route('excluir_carrinho', ['indice' => $indice])}}" class="header-cart-item-info" style="margin-left: 50%;">
+                                        <i class="fa fa-trash-o"></i>
+                                    </a>
+                                </td>
+
                             </tr>
+                            @endforeach
                         </table>
                     </div>
 

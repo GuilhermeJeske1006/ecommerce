@@ -1,26 +1,19 @@
 @extends('components.body')
 @section('body')
     <!-- Product -->
-@component('components.topWhite')@endcomponent
+@component('components.topWhite', ['carrinho' => $carrinho])@endcomponent
     <div class="bg0 m-t-23 p-b-140">
         <div class="container">
             <div class="flex-w flex-sb-m p-b-52">
                 <div class="flex-w flex-l-m filter-tope-group m-tb-10">
-                    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
+                    <a href="{{route('produto_por_id', ['idcategoria' => 0])}}" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 @if($idcategoria == 0) how-active1 @endif" data-filter="*">
                         Todos
-                    </button>
-
-                    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
-                        Menina
-                    </button>
-
-                    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
-                        Menino
-                    </button>
-
-                    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
-                        Outros
-                    </button>
+                    </a>
+                    @foreach($listaCategoria as $categoria)
+                    <a href="{{route('produto_por_id', ['idcategoria' => $categoria->id])}}" class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 @if($categoria->id === $idcategoria) how-active1 @endif" data-filter=".women">
+                        {{$categoria->categoria}}
+                    </a>
+                    @endforeach
                 </div>
 
                 <div class="flex-w flex-c-m m-tb-10">
@@ -239,9 +232,20 @@
             </div>
 
             <div class="row isotope-grid">
-                @for($i = 0; $i < 10; $i++)
-                    @component('components.card')@endcomponent
-                @endfor
+                @if(isset($lista) && count($lista) > 0)
+                    @foreach($lista as $prod)
+                    @component('components.card', ['prod' => $prod])@endcomponent
+                    @endforeach
+
+                    @else
+                    <div class="container">
+                        <div class="row d-flex " style="justify-content: center;">
+                            <h3 style="text-align: end">Nenhum produto encontrado!</h3>
+                        </div>
+                    </div>
+
+
+                @endif
             </div>
 
             <!-- Load more -->

@@ -9,17 +9,13 @@
             <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
                 <!-- Block1 -->
                 <div class="block1 wrap-pic-w">
-                    <img src="images/menina.png"  alt="IMG-BANNER" style="max-width: 52%; margin-left: 50%;">
+                    <img src="{{asset('images/menina.png')}}"  alt="IMG-BANNER" style="max-width: 52%; margin-left: 50%;">
 
-                    <a href="{{route('produtos')}}" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+                    <a href="{{route('produto_por_id', ['idcategoria' => 1])}}" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
                         <div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8">
 									Menina
 								</span>
-
-{{--                            <span class="block1-info stext-102 trans-04">--}}
-{{--									Spring 2018--}}
-{{--								</span>--}}
                         </div>
 
                         <div class="block1-txt-child2 p-b-4 trans-05">
@@ -34,19 +30,15 @@
             <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
                 <!-- Block1 -->
                 <div class="block1 wrap-pic-w">
-                    <img src="images/menino.png" alt="IMG-BANNER" style="    max-width: 50%;
+                    <img src="{{asset('images/menino.png')}}" alt="IMG-BANNER" style="    max-width: 50%;
     margin-left: 50%;
 }">
 
-                    <a href="{{route('produtos')}}" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+                    <a href="{{route('produto_por_id', ['idcategoria' => 2])}}" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
                         <div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8">
 									Menino
 								</span>
-
-{{--                            <span class="block1-info stext-102 trans-04">--}}
-{{--									Spring 2018--}}
-{{--								</span>--}}
                         </div>
 
                         <div class="block1-txt-child2 p-b-4 trans-05">
@@ -61,17 +53,13 @@
             <div class="col-md-6 col-xl-4 p-b-30 m-lr-auto">
                 <!-- Block1 -->
                 <div class="block1 wrap-pic-w">
-                    <img src="images/banner-03.jpg" alt="IMG-BANNER">
+                    <img src="{{asset('images/banner-03.jpg')}}" alt="IMG-BANNER">
 
-                    <a href="{{route('produtos')}}" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+                    <a href="{{route('produto_por_id', ['idcategoria' => 3])}}" class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
                         <div class="block1-txt-child1 flex-col-l">
 								<span class="block1-name ltext-102 trans-04 p-b-8">
 									Acessórios
 								</span>
-
-{{--                            <span class="block1-info stext-102 trans-04">--}}
-{{--									New Trend--}}
-{{--								</span>--}}
                         </div>
 
                         <div class="block1-txt-child2 p-b-4 trans-05">
@@ -87,6 +75,7 @@
 </div>
 
 
+
 <!-- Product -->
 <section class="bg0 p-t-23 p-b-140">
     <div class="container">
@@ -98,30 +87,30 @@
 
         <div class="flex-w flex-sb-m p-b-52">
             <div class="flex-w flex-l-m filter-tope-group m-tb-10">
-                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
+                <a class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
                     Todos
-                </button>
-
-                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
+                </a>
+                <a class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5"  data-filter=".women">
                     Menina
-                </button>
+                </a>
 
-                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
+                <a class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".men">
                     Menino
-                </button>
+                </a>
 
-                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
+                <a class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".bag">
                     Outros
-                </button>
-
+                </a>
             </div>
 
         </div>
 
         <div class="row isotope-grid">
-            @for($i = 0; $i < 8; $i++)
-                @component('components.card')@endcomponent
-            @endfor
+            @if(isset($lista))
+                @foreach($lista as $prod)
+                @component('components.card', ['prod' => $prod])@endcomponent
+                @endforeach
+            @endif
         </div>
 
         <!-- Load more -->

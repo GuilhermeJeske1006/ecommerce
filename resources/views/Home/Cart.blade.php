@@ -12,26 +12,44 @@
             </div>
         </div>
 
+
         <div class="header-cart-content flex-w js-pscroll">
+            @if(isset($carrinho) && count($carrinho) > 0)
             <ul class="header-cart-wrapitem w-full">
-                @for($i = 0; $i < 3; $i++)
+                @foreach($carrinho as $indice => $cart)
+
                 <li class="header-cart-item flex-w flex-t m-b-12">
                     <div class="header-cart-item-img">
-                        <img src="{{asset('images/item-cart-01.jpg')}}" alt="IMG">
+                        <img src="{{asset($cart->foto)}}" alt="IMG">
                     </div>
 
                     <div class="header-cart-item-txt p-t-8">
-                        <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                            White Shirt Pleat
+                        <a href="{{route('details',  [$cart->id])}}" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
+                            {{$cart->nome}}
                         </a>
-
-                        <span class="header-cart-item-info">
-								1 x R$19.00
+                        <div class="d-flex">
+                            <span class="header-cart-item-info">
+								1 x R${{$cart->valor}}
 							</span>
+
+                            <a href="{{route('excluir_carrinho', ['indice' => $indice])}}" class="header-cart-item-info" style="margin-left: 50%;">
+                                <i class="fa fa-trash-o"></i>
+							</a>
+                        </div>
+
+
                     </div>
                 </li>
-                @endfor
+                @endforeach
             </ul>
+            @else
+                <div class="container">
+                    <div class="row">
+                        <h5 style="text-align: center"><b>Nenhum item encontrado no carrinho.</b></h5>
+
+                    </div>
+                </div>
+            @endif
 
             <div class="w-full">
                 <div class="header-cart-total w-full p-tb-40">

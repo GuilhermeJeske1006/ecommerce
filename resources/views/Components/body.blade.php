@@ -43,7 +43,6 @@
 <body class="animsition">
 @yield('body')
 @component('components.footer')@endcomponent
-@component('components.modalDetails')@endcomponent
 
 
 <!-- Back to top -->

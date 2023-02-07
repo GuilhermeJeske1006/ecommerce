@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 class ContactController extends Controller
 {
     public function Index(){
-        return view('contact.index');
+        $carrinho = session('cart', []);
+
+        return view('contact.index', [
+            'carrinho' => $carrinho
+        ]);
     }
 }

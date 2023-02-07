@@ -1,7 +1,7 @@
 @extends('components.body')
 @section('body')
     <!-- Product -->
-    @component('components.topWhite')@endcomponent
+    @component('components.topWhite', ['carrinho' => $carrinho])@endcomponent
 
 
 <!-- Title page -->

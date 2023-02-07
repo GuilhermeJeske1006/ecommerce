@@ -5,12 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Product extends Model
+class Imagem extends RModel
 {
     use HasFactory;
-
-    public function Category()
-    {
-        return $this->belongsTo('App\Models\Category');
-    }
 }

@@ -2,11 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produto;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function index(){
-        return view('index');
+        $data = [];
+        $listaProdutos = Produto::limit(16)->get();
+        $data["lista"] = $listaProdutos;
+        $carrinho = session('cart', []);
+        $data["carrinho"] = $carrinho;
+        return view('index', $data);
     }
+
+
+
 }

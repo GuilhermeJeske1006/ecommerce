@@ -1,6 +1,10 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ShopController;
+use App\Http\Controllers\ContactController;
+
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,11 +19,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
-Route::get('/produtos', [\App\Http\Controllers\ShopController::class, 'index'])->name('produtos');
-Route::get('/sobre', [\App\Http\Controllers\AboutController::class, 'index'])->name('sobre');
-Route::get('/contato', [\App\Http\Controllers\ContactController::class, 'index'])->name('contato');
-Route::get('/checkout', [\App\Http\Controllers\ShopController::class, 'Check'])->name('checkout');
-Route::get('/detalhes/{id}', [\App\Http\Controllers\ShopController::class, 'Details'])->name('details');
+Route::get('/produtos', [ShopController::class, 'index'])->name('produtos');
+Route::match(['get', 'post'], '/produtos/{idcategoria}', [ShopController::class, 'index'])->name('produto_por_id');
+Route::match(['get', 'post'], '/carrinho/adicionar/{idproduto}', [ShopController::class, 'adicionarCarrinho'])->name('adicionar_carrinho');
+Route::get('/sobre', [AboutController::class, 'index'])->name('sobre');
+Route::get('/contato', [ContactController::class, 'index'])->name('contato');
+Route::get('/checkout', [ShopController::class, 'Check'])->name('checkout');
+Route::get('/detalhes/{id}', [ShopController::class, 'Details'])->name('details');
+Route::post('/comentar', [ShopController::class, 'Comentar'])->name('comentar');
+Route::match(['get', 'post'], '/excluircarrinho/{indice}', [ShopController::class, 'excluirCarrinho'])->name('excluir_carrinho');
+
 
 
 

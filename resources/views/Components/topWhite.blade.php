@@ -9,7 +9,7 @@
 
                 <div class="right-top-bar flex-w h-full">
 
-
+                    @if(Auth::guest())
                     <a href="{{route('login')}}" class="flex-c-m trans-04 p-lr-25">
                         Login
                     </a>
@@ -17,6 +17,20 @@
                     <a href="{{route('register')}}" class="flex-c-m trans-04 p-lr-25">
                         Registre-se
                     </a>
+                    @endif
+                    @if(Auth::check())
+                            <a href="" class="flex-c-m trans-04 p-lr-25">
+                                Bem vindo de volta {{auth()->user()->name}}!
+                            </a>
+                            <a href="{{ route('profile.show') }}" class="flex-c-m trans-04 p-lr-25">
+                                Minha conta
+                            </a>
+                            <form method="POST" action="{{ route('logout') }}" class="flex-c-m trans-04 p-lr-25 right-top-bar a">
+                                @csrf
+                                <button type="submit" class="btn-logout">Logout</button>
+
+                            </form>
+                        @endif
                 </div>
             </div>
         </div>
@@ -48,7 +62,7 @@
                 <div class="wrap-icon-header flex-w flex-r-m">
 
 
-                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="2">
+                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-l-22 p-r-11 icon-header-noti js-show-cart" data-notify="{{count($carrinho)}}">
                         <i class="zmdi zmdi-shopping-cart"></i>
                     </div>
                 </div>
@@ -67,7 +81,7 @@
         <div class="wrap-icon-header flex-w flex-r-m m-r-15">
 
 
-            <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="2">
+            <div class="icon-header-item cl2 hov-cl1 trans-04 p-r-11 p-l-10 icon-header-noti js-show-cart" data-notify="{{count($carrinho)}}">
                 <i class="zmdi zmdi-shopping-cart"></i>
             </div>
         </div>
@@ -120,4 +134,14 @@
 
 </header>
 
-@component('home.Cart')@endcomponent
+@component('home.Cart', ['carrinho' => $carrinho])@endcomponent
+
+<style>
+    .btn-logout {
+        font-family: Poppins-Regular;
+        font-size: 12px;
+        line-height: 1.8;
+        height: 100%;
+        color: #b2b2b2;
+    }
+</style>
