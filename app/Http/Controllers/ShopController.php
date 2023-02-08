@@ -56,6 +56,9 @@ class ShopController extends Controller
         $Imagens = DB::select(
             'select * from Imagems where produto_id =' .$id);
 
+        $cores = DB::select(
+            'select * from Imagems where produto_id =' .$id );
+
         $carrinho = session('cart', []);
 
         return view('shop.details',
@@ -65,6 +68,7 @@ class ShopController extends Controller
                 'tamanhos' => $tamanhos,
                 'imagens' => $Imagens,
                 'carrinho' => $carrinho,
+                'cores'   => $cores,
             ]);
     }
 
@@ -110,4 +114,7 @@ class ShopController extends Controller
             ->to(url()->previous());
 
     }
+
+
+
 }

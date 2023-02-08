@@ -107,15 +107,13 @@
 
         <div class="row isotope-grid">
             @if(isset($lista))
-                @foreach($lista as $prod)
-                @component('components.card', ['prod' => $prod])@endcomponent
-                @endforeach
+                @component('components.card', ['lista' => $lista])@endcomponent
             @endif
         </div>
 
         <!-- Load more -->
         <div class="flex-c-m flex-w w-full p-t-45">
-            <a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
+            <a href="{{route('produtos')}}" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
                 Veja mais
             </a>
         </div>

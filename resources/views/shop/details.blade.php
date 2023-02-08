@@ -103,10 +103,7 @@
                                 <div class="rs1-select2 bor8 bg0">
                                     <select class="js-select2" name="time">
                                         <option>Selecione a cor</option>
-                                        <option>Vermelho</option>
                                         <option>Azul</option>
-                                        <option>Branco</option>
-                                        <option>Verde</option>
                                     </select>
                                     <div class="dropDownSelect2"></div>
                                 </div>
@@ -245,7 +242,7 @@
 											</span>
 
                                         <span class="stext-102 cl6 size-206">
-												{{$produto->cor}}
+												@foreach($cores as $cor) {{$cor->cor}}, @endforeach
 											</span>
                                     </li>
                                         @endif
@@ -366,3 +363,11 @@
     </div>
 </section>
 @endsection
+
+<script>
+    function calcularCep(){
+
+    }
+</script>
+
+
