@@ -24,10 +24,14 @@
                         <a href="#" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
                             White Shirt Pleat
                         </a>
-
+                        <div class="d-flex">
                         <span class="header-cart-item-info">
 								1 x R$19.00
 							</span>
+                            <span class="header-cart-item-info" style="margin-left: 50%">
+                                <i class="fa fa-trash"></i>
+							</span>
+                        </div>
                     </div>
                 </li>
                 @endfor

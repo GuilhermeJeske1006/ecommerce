@@ -6,7 +6,12 @@ use Livewire\Component;
 
 class PayModal extends Component
 {
-    public $teste = "ola meu nome é guilherme";
+    public $count = 0;
+
+    public function increment()
+    {
+        $this->count++;
+    }
 
     public function render()
     {
