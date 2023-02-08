@@ -61,65 +61,67 @@
 
 
                         </div>
-                        <div class="container">
-                            <div class="row">
-                                <h5 class="mtext-105 cl2 js-name-detail p-b-14">Informe os dados do cartão!</h5>
+                        <div style="margin-top: 5%">
+                            <div class="container">
+                                <div class="row" style="margin-left: 3%;">
+                                    <h4 class="mtext-109 cl2 p-b-30">
+                                        Cadastrar cartão de credito
+                                    </h4>
+                                </div>
                             </div>
-                        </div>
-                        <br>
                             <div class="col-md-12 col-12 d-flex">
                                 <div class="col-6 col-md-6">
-                                    <div class="bor8 m-b-20 how-pos4-parent">
-                                        <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Informe o seu email">
-                                        <img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
+                                    <div class="bor8 bg0 m-b-12">
+                                        <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="city"
+                                               placeholder="Numero do cartao">
                                     </div>
                                 </div>
                                 <div class="col-6 col-md-6">
-                                    <div class="bor8 m-b-20 how-pos4-parent">
-                                        <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Informe o seu email">
-                                        <img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
+                                    <div class="bor8 bg0 m-b-12">
+                                        <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="city"
+                                               placeholder="Nome no cartão">
                                     </div>
                                 </div>
-                        </div>
-                        <div class="col-md-12 col-12 d-flex">
-                            <div class="col-6 col-md-3">
-                                <div class="bor8 m-b-20 how-pos4-parent">
-                                    <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Informe o seu email">
-                                    <img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
+                            </div>
+                            <div class="col-md-12 col-12 d-flex">
+                                <div class="col-6 col-md-4">
+                                    <div class="bor8 bg0 m-b-22">
+                                        <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="postcode"
+                                               placeholder="Bandeira">
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-6">
+                                    <div class="bor8 bg0 m-b-22">
+                                        <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="adress"
+                                               placeholder="Expiração">
+                                    </div>
+                                </div>
+                                <div class="col-6 col-md-2">
+                                    <div class="bor8 bg0 m-b-22">
+                                        <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="number"
+                                               placeholder="CCV">
+                                    </div>
                                 </div>
                             </div>
-                            <div class="col-6 col-md-5">
-                                <div class="bor8 m-b-20 how-pos4-parent">
-                                    <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Informe o seu email">
-                                    <img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
-                                </div>
-                            </div>
-                            <div class="col-6 col-md-4">
-                                <div class="bor8 m-b-20 how-pos4-parent">
-                                    <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email" placeholder="Informe o seu email">
-                                    <img class="how-pos4 pointer-none" src="images/icons/icon-email.png" alt="ICON">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="flex-w   p-b-10">
-                            <div class="wid-full flex-finali flex-w flex-m respon6-next">
+                            <div class="flex-w   p-b-10">
+                                <div class="wid-full flex-finali flex-w flex-m respon6-next">
 
-                                <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-                                    Finalizar compra
-                                </button>
+                                    <button
+                                        class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+                                        Finalizar pagamento
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-
         </div>
     </div>
 </div>
 </div>
 
-@component('livewire.pay-modal')@endcomponent
 
 <style>
     .flex-finali {
