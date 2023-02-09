@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string("logradouro");
             $table->string("numero");
             $table->string("cidade");
+            $table->string("bairro");
             $table->string("estado");
             $table->string("cep");
             $table->string("complemento");

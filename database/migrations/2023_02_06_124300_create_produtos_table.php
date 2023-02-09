@@ -22,6 +22,7 @@ return new class extends Migration
             $table->longText("descricao_longa")->nullable();
             $table->integer("categoria_id")->unsigned();
             $table->string("peso")->nullable();
+            $table->integer('qtd')->nullable();
             $table->string("dimensao", 50)->nullable();
             $table->string("material", 50)->nullable();
             $table->string("cor", 50)->nullable();

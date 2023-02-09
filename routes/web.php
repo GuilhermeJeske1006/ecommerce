@@ -3,6 +3,9 @@
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\AdressController;
+use App\Http\Controllers\ProfileController;
+
 
 
 use Illuminate\Support\Facades\Route;
@@ -21,23 +24,34 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('/produtos', [ShopController::class, 'index'])->name('produtos');
 Route::match(['get', 'post'], '/produtos/{idcategoria}', [ShopController::class, 'index'])->name('produto_por_id');
-Route::match(['get', 'post'], '/carrinho/adicionar/{idproduto}', [ShopController::class, 'adicionarCarrinho'])->name('adicionar_carrinho');
+Route::post( '/carrinho', [ShopController::class, 'adicionarCarrinho'])->name('adicionar_carrinho');
 Route::get('/sobre', [AboutController::class, 'index'])->name('sobre');
 Route::get('/contato', [ContactController::class, 'index'])->name('contato');
-Route::get('/checkout', [ShopController::class, 'Check'])->name('checkout');
+Route::get('/carrinho', [ShopController::class, 'carrinho'])->name('carrinho');
+
 Route::get('/detalhes/{id}', [ShopController::class, 'Details'])->name('details');
 Route::post('/comentar', [ShopController::class, 'Comentar'])->name('comentar');
-Route::match(['get', 'post'], '/excluircarrinho/{indice}', [ShopController::class, 'excluirCarrinho'])->name('excluir_carrinho');
+Route::match(['get', 'post'], '/excluircarrinho', [ShopController::class, 'excluirCarrinho'])->name('excluir_carrinho');
+Route::match(['get', 'post'],'/enviar/endereco', [AdressController::class, 'adicionarEndereco'])->name('adicionar_endereco');
+Route::get('/endereco', [AdressController::class, 'Endereco'])->name('endereco');
+Route::get('/perfil', [ProfileController::class, 'Perfil'])->name('perfil');
+
 
 
 
 
 Route::middleware([
     'auth:sanctum',
-    config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    Route::get('/checkout', [ShopController::class, 'Check'])->name('checkout');
+    Route::get('/compras/historico', [ShopController::class, 'historico'])->name('compra_historico');
+    Route::get('/checkout/pagamento', [ShopController::class, 'getPagamento'])->name('ir_ao_pagamento');
+    Route::post('/finalizar/pedido', [ShopController::class, 'finalizarPedido'])->name('finalizar_pedido');
+
+
+
 });

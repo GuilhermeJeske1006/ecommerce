@@ -5,12 +5,12 @@
 </div>
 
 <!-- Modal1 -->
-<div class="wrap-modal1 js-modal2 p-t-60 p-b-20">
-<div class="overlay-modal1 js-hide-modal2"></div>
+<div class="wrap-modal1  js-show-modal2 js-modal2 p-t-60 p-b-20">
+<div class="overlay-modal1 js-hide-modal2 js-show-modal2"></div>
 
 <div class="container">
     <div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
-        <button class="how-pos3 hov3 trans-04 js-hide-modal2">
+        <button class="how-pos3 hov3 trans-04 js-show-modal2 js-hide-modal2">
             <img src="images/icons/icon-close.png" alt="CLOSE">
         </button>
 
@@ -103,15 +103,17 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="flex-w   p-b-10">
+                            <form method="POST" action="{{route('finalizar_pedido')}}" class="flex-w   p-b-10">
+                                @csrf
                                 <div class="wid-full flex-finali flex-w flex-m respon6-next">
 
                                     <button
+                                        type="submit"
                                         class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
                                         Finalizar pagamento
                                     </button>
                                 </div>
-                            </div>
+                            </form>
                         </div>
                     </div>
                 </div>
@@ -131,10 +133,16 @@
 </style>
 
 <script>
-    let checkbox = document.getElementById('cartao_credito');
-    if(checkbox.checked) {
-        console.log("O cliente marcou o checkbox");
-    } else {
-        console.log("O cliente não marcou o checkbox");
+    function selected(){
+        let checkbox = document.getElementById('cartao_credito');
+        let resul = false;
+        if(checkbox.checked) {
+            console.log(resul = true)
+            resul = true;
+        } else {
+            console.log(resul = false)
+            resul = false
+        }
     }
+
 </script>

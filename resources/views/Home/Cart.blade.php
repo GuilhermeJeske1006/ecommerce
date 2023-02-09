@@ -12,7 +12,7 @@
             </div>
         </div>
 
-
+        @php $total = 0; @endphp
         <div class="header-cart-content flex-w js-pscroll">
             @if(isset($carrinho) && count($carrinho) > 0)
             <ul class="header-cart-wrapitem w-full">
@@ -20,26 +20,30 @@
 
                 <li class="header-cart-item flex-w flex-t m-b-12">
                     <div class="header-cart-item-img">
-                        <img src="{{asset($cart->foto)}}" alt="IMG">
+                        <img src="{{asset($cart->attributes->foto)}}" alt="IMG">
                     </div>
 
                     <div class="header-cart-item-txt p-t-8">
                         <a href="{{route('details',  [$cart->id])}}" class="header-cart-item-name m-b-18 hov-cl1 trans-04">
-                            {{$cart->nome}}
+                            {{$cart->name}}
                         </a>
                         <div class="d-flex">
                             <span class="header-cart-item-info">
-								1 x R${{$cart->valor}}
+								{{$cart->quantity}} x R${{$cart->price}}
 							</span>
-
-                            <a href="{{route('excluir_carrinho', ['indice' => $indice])}}" class="header-cart-item-info" style="margin-left: 50%;">
+                            <form action="{{route('excluir_carrinho')}}" method="POST" style="margin-left: 50%;">
+                                @csrf
+                                <input type="hidden" value="{{$cart->id}}" name="id">
+                            <button type="submit" class="header-cart-item-info" style="margin-left: 50%;">
                                 <i class="fa fa-trash-o"></i>
-							</a>
+							</button>
+                            </form>
                         </div>
 
 
                     </div>
                 </li>
+                    @php $total += $cart->price * $cart->quantity ; @endphp
                 @endforeach
             </ul>
             @else
@@ -53,12 +57,12 @@
 
             <div class="w-full">
                 <div class="header-cart-total w-full p-tb-40">
-                    Total: R$ 100,00
+                    Total: R$ {{$total}}
                 </div>
 
                 <div class="header-cart-buttons flex-w w-full">
                     <a href="{{route('checkout')}}" class="flex-c-m stext-101 cl0 size-107 bg3 bor2 hov-btn3 p-lr-15 trans-04 m-r-8 m-b-10">
-                        Ir ao CheckOut
+                        Finalizar carrinho
                     </a>
 
                 </div>

@@ -11,8 +11,10 @@ class HomeController extends Controller
         $data = [];
         $listaProdutos = Produto::limit(16)->get();
         $data["lista"] = $listaProdutos;
-        $carrinho = session('cart', []);
+        //$carrinho = session('cart', []);
+        $carrinho = \Cart::getContent();
         $data["carrinho"] = $carrinho;
+
         return view('index', $data);
     }
 

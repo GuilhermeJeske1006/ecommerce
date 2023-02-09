@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 class ContactController extends Controller
 {
     public function Index(){
-        $carrinho = session('cart', []);
+        $carrinho = \Cart::getContent();
 
         return view('contact.index', [
             'carrinho' => $carrinho

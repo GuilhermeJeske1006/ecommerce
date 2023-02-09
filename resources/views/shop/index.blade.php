@@ -14,7 +14,9 @@
                         {{$categoria->categoria}}
                     </a>
                     @endforeach
+
                 </div>
+
 
                 <div class="flex-w flex-c-m m-tb-10">
                     <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
@@ -37,8 +39,9 @@
                         <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
                             <i class="zmdi zmdi-search"></i>
                         </button>
-
-                        <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
+                        <form method="Get" action="{{route('produtos')}}">
+                        <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search" placeholder="Search">
+                        </form>
                     </div>
                 </div>
 
@@ -233,25 +236,16 @@
             </div>
 
             <div class="row isotope-grid">
-                @if(isset($lista) && count($lista) > 0)
                     @component('components.card', ['lista' => $lista])@endcomponent
-
-                    @else
-                    <div class="container">
-                        <div class="row d-flex " style="justify-content: center;">
-                            <h3 style="text-align: end">Nenhum produto encontrado!</h3>
-                        </div>
-                    </div>
+{{--                    <div class="container">--}}
+{{--                        <div class="row d-flex " style="justify-content: center;">--}}
+{{--                            <h3 style="text-align: end">Nenhum produto encontrado!</h3>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
 
 
-                @endif
             </div>
+            @component('vendor.pagination.simple-default', ['paginator' => $lista])@endcomponent
 
-            <!-- Load more -->
-            <div class="flex-c-m flex-w w-full p-t-45">
-                <a href="#" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-                    Ver mais
-                </a>
-            </div>
         </div>
     </div>@endsection

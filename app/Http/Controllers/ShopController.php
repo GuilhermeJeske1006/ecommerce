@@ -3,32 +3,60 @@
 namespace App\Http\Controllers;
 
 use App\Models\Categoria;
+use App\Models\Endereco;
+use App\Models\ItensPedido;
+use App\Models\Pedido;
 use App\Models\Produto;
 use App\Models\Comentario;
+use App\Services\VendaService;
+use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Auth;
+use PagSeguro\Configuration\Configure;
 
 class ShopController extends Controller
 {
+    private $_configs;
+
+    public function __construct(){
+        $this->_configs = new Configure();
+        $this->_configs->setCharset("UTF-8");
+        $this->_configs->setAccountCredentials(env('PAGSEGURO_EMAIL'), env('PAGSEGURO_TOKEN'));
+        $this->_configs->setEnvironment(env('PAGSEGURO_AMBIENTE'));
+        $this->_configs->setLog(true, storage_path('logs/pagseguro_' . date('ymd') . '.log'));
+    }
+
+    public function getCredential(){
+        return $this->_configs->getAccountCredentials();
+    }
     public function Index($idCategoria = 0){
         $data = [];
 
-        $queryProduto = Produto::limit(8);
+        $search = \request('search');
+
+        if($search){
+            $queryProduto = Produto::where([
+                ['nome', 'like', '%'.$search.'%']
+            ]);
+        }else{
+            $queryProduto = Produto::simplePaginate(16);
+        }
 
         $listaCategorias = Categoria::all();
 
         if($idCategoria != 0){
             $queryProduto->where("categoria_id", $idCategoria);
         }
-        $listaProdutos = $queryProduto->get();
+        $listaProdutos = $queryProduto;
 
-        $carrinho = session('cart', []);
+        $carrinho = \Cart::getContent();
 
         $data["lista"] = $listaProdutos;
         $data["listaCategoria"] = $listaCategorias;
         $data["idcategoria"] = $idCategoria;
         $data["carrinho"] = $carrinho;
+        $data["search"] = $search;
 
 
         return view(
@@ -37,10 +65,15 @@ class ShopController extends Controller
     }
 
     public function Check(){
-        $carrinho = session('cart', []);
+        $user = Auth::user()->id;
+        $endereco = DB::select(
+            'select * from enderecos where usuario_id = '.$user);
+
+        $carrinho = \Cart::getContent();
 
         return view('CheckOut.index', [
-            'carrinho' => $carrinho
+            'carrinho' => $carrinho,
+            'endereco' => $endereco
         ]);
     }
 
@@ -59,7 +92,7 @@ class ShopController extends Controller
         $cores = DB::select(
             'select * from Imagems where produto_id =' .$id );
 
-        $carrinho = session('cart', []);
+        $carrinho = \Cart::getContent();
 
         return view('shop.details',
             [
@@ -88,31 +121,79 @@ class ShopController extends Controller
     }
 
 
-    public function adicionarCarrinho($idProduto = 0, Request $request){
-        $prod = Produto::find($idProduto);
+    public function adicionarCarrinho( Request $request){
+        //$prod = Produto::find($idProduto);
 
-        if($prod){
-            $carrinho = session('cart', []);
-
-            array_push($carrinho, $prod);
-            session(['cart' => $carrinho]);
-        }
+        \Cart::add([
+            'id' => $request->id,
+            'name' => $request->name,
+            'price' => $request->price,
+            'quantity' => $request->quantity,
+            'attributes' => array(
+                'foto' => $request->foto,
+                'tamanho' => $request->tamanho,
+                'frete' => $request->frete,
+            )
+        ]);
 
         return  redirect()
-            ->to(url()->previous());
+           ->to(url()->previous());
     }
 
-    public function excluirCarrinho($indice, Request $request){
-        $carrinho = session('cart', []);
-
-        if(isset($carrinho[$indice])){
-            unset($carrinho[$indice]);
-        }
-        session(['cart' => $carrinho]);
+    public function excluirCarrinho(Request $request){
+        $id = $request->id;
+        \Cart::remove($id);
 
         return redirect()
             ->to(url()->previous());
 
+    }
+
+    public function finalizarPedido(Request $request){
+        $prods = \Cart::getContent();
+        $vendaService = new VendaService();
+        $result = $vendaService->finalizarVenda($prods, Auth::user());
+
+        $request->session()->forget('cart');
+
+
+
+        return redirect()->route('checkout');
+    }
+
+    public function historico(Request $request){
+        $carrinho = \Cart::getContent();
+
+        $idUsuario = Auth::user()->id;
+        $idpedido = 1;
+        $listaPedido = Pedido::where('usuario_id',$idUsuario )
+                                ->orderBy('datapedido', 'desc')
+                                ->get();
+
+        return view('profile.historico',[
+            //'listaItens' => $listaItens,
+            'carrinho' => $carrinho,
+            'listaPedido' => $listaPedido,
+        ]);
+    }
+
+    public function getPagamento(){
+        $itens = \Cart::getContent();
+
+       $sessionCode = \PagSeguro\Services\Session::create(
+            $this->getCredential()
+        );
+        $IDSession = $sessionCode->getResult();
+        $data["sessionId"] = $IDSession;
+        $data["carrinho"] = $itens;
+
+        return view('pagamento.index', $data);
+    }
+
+    public function carrinho(){
+        $itens = \Cart::getContent();
+        dd($itens);
+//        return view('default', compact('itens'));
     }
 
 

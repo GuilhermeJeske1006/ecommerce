@@ -38,6 +38,9 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{asset('css/util.css')}}">
     <link rel="stylesheet" type="text/css" href="{{asset('css/main.css')}}">
+    @livewireStyles
+    @yield('scriptjs')
+
     <!--===============================================================================================-->
 </head>
 <body class="animsition">
@@ -64,6 +67,9 @@
         });
     })
 </script>
+@livewireScripts
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js" integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD" crossorigin="anonymous"></script>
 <!--===============================================================================================-->
 <script src="{{asset('vendor/daterangepicker/moment.min.js')}}"></script>
 <script src="{{asset('vendor/daterangepicker/daterangepicker.js')}}"></script>
@@ -93,6 +99,7 @@
 <script src="{{asset('vendor/isotope/isotope.pkgd.min.js')}}"></script>
 <!--===============================================================================================-->
 <script src="{{asset('vendor/sweetalert/sweetalert.min.js')}}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
     $('.js-addwish-b2').on('click', function(e){
         e.preventDefault();
@@ -125,6 +132,29 @@
         var nameProduct = $(this).parent().parent().parent().parent().find('.js-name-detail').html();
         $(this).on('click', function(){
             swal(nameProduct, "Produto adicionado ao carinho !", "success");
+        });
+    });
+    $('.js-addadress').each(function(){
+        $(this).on('click', function(){
+            swal({
+                title: "Atenção!",
+                text: "Você precisa cadastrar um endereço antes passar para a próxima etapa!",
+                icon: "warning",
+                buttons: false,
+                dangerMode: false,
+            });
+        });
+    });
+
+    $('.js-addproduct').each(function(){
+        $(this).on('click', function(){
+            swal({
+                title: "Atenção!",
+                text: "Você precisa adicionar um item ao carrinho para avançar a proxima etapa!",
+                icon: "warning",
+                buttons: false,
+                dangerMode: false,
+            });
         });
     });
 

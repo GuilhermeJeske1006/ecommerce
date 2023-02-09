@@ -74,7 +74,9 @@
 
                     <!--  -->
                     @if(count($tamanhos) != 0)
-                    <div class="p-t-33">
+                        <form method="POST" action="{{ route('adicionar_carrinho') }}">
+                            @csrf
+                    <div  class="p-t-33">
                         <div class="flex-w flex-r-m p-b-10">
                             <div class="size-203 flex-c-m respon6">
                                 Tamanho
@@ -82,7 +84,7 @@
 
                             <div class="size-204 respon6-next">
                                 <div class="rs1-select2 bor8 bg0">
-                                    <select class="js-select2" name="time">
+                                    <select class="js-select2" name="tamanho">
                                         <option>Selecione o tamanho</option>
                                         @foreach($tamanhos as $item)
                                         <option>{{$item->tamanho}}</option>
@@ -94,20 +96,20 @@
                             </div>
                         </div>
 
-                        <div class="flex-w flex-r-m p-b-10">
-                            <div class="size-203 flex-c-m respon6">
-                                Cor
-                            </div>
+{{--                        <div class="flex-w flex-r-m p-b-10">--}}
+{{--                            <div class="size-203 flex-c-m respon6">--}}
+{{--                                Cor--}}
+{{--                            </div>--}}
 
-                            <div class="size-204 respon6-next">
-                                <div class="rs1-select2 bor8 bg0">
-                                    <select class="js-select2" name="time">
-                                        <option>Selecione a cor</option>
-                                        <option>Azul</option>
-                                    </select>
-                                    <div class="dropDownSelect2"></div>
-                                </div>
-                            </div>
+{{--                            <div class="size-204 respon6-next">--}}
+{{--                                <div class="rs1-select2 bor8 bg0">--}}
+{{--                                    <select class="js-select2" name="time">--}}
+{{--                                        <option>Selecione a cor</option>--}}
+{{--                                        <option>Azul</option>--}}
+{{--                                    </select>--}}
+{{--                                    <div class="dropDownSelect2"></div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                         </div>
 
                         <div class="flex-w flex-r-m p-b-10">
@@ -117,19 +119,50 @@
                                         <i class="fs-16 zmdi zmdi-minus"></i>
                                     </div>
 
-                                    <input class="mtext-104 cl3 txt-center num-product" type="number" name="num-product" value="1">
+                                    <input class="mtext-104 cl3 txt-center num-product" type="number" name="quantity" id="qtd" value="1">
 
                                     <div class="btn-num-product-up cl8 hov-btn3 trans-04 flex-c-m">
                                         <i class="fs-16 zmdi zmdi-plus"></i>
                                     </div>
                                 </div>
-
-                                <a href="{{ route('adicionar_carrinho', ['idproduto' => $produto->id]) }}" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-                                    Adicionar ao carrinho
-                                </a>
-
                             </div>
                         </div>
+
+                        <div class="flex-w flex-r-m p-b-10">
+                            <div class="size-203 flex-c-m respon6" style="    margin-bottom: 5%;">
+                                Frete
+                            </div>
+
+                            <div class="size-204 respon6-next">
+                                <div class="bor8 bg0 m-b-22 d-flex">
+                                    <input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text"
+                                           name="cep" id="cep" placeholder="Insira o seu cep">
+                                    <a
+                                        onclick="calculaFrete()"
+                                        class="flex-c-m stext-101 hov-btn3 p-lr-15 trans-04 pointer" >
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="flex-w flex-r-m p-b-10" style="margin-bottom: 3%">
+                            <div class=" flex-c-m respon6">
+                                <b>Valor do Frete : R$ 20,00</b>
+                            </div>
+
+                        </div>
+                            <input type="hidden" name="id" value="{{$produto->id}}">
+                            <input type="hidden" name="name" value="{{$produto->nome}}">
+                            <input type="hidden" name="price" value="{{$produto->valor}}">
+                            <input type="hidden" name="foto" value="{{$produto->foto}}">
+                            <input type="hidden" name="frete" value="20">
+
+                        <button style="    margin-left: 50%; text-align: center"  type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+                            Adicionar ao carrinho
+                        </button>
+                        </form>
                     </div>
                     @endif
                     @if(count($tamanhos) == 0)
@@ -237,7 +270,7 @@
 											</span>
 
                                         <span class="stext-102 cl6 size-206">
-												@foreach($cores as $cor) {{$cor->cor}}, @endforeach
+												{{$produto->cor}}
 											</span>
                                     </li>
                                         @endif
@@ -277,13 +310,45 @@
 
                                                 @if($coment->estrela != null)
                                                 <span class="fs-18 cl11">
-														<i class="zmdi zmdi-star @if($coment->estrela == 1) zmdi-star-half @endif"></i>
-														<i class="zmdi zmdi-star @if($coment->estrela == 2) zmdi-star-half @endif"></i>
-														<i class="zmdi zmdi-star @if($coment->estrela == 3) zmdi-star-half @endif"></i>
-														<i class="zmdi zmdi-star @if($coment->estrela == 4) zmdi-star-half @endif"></i>
-														<i class="zmdi zmdi-star @if($coment->estrela == 5) zmdi-star-half @endif"></i>
-
+                                                    @switch($coment)
+                                                        @case($coment->estrela == 1)
+                                                            <i class="zmdi zmdi-star zmdi-star-half"></i>
+                                                            <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                            <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                            <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                            <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                            @break
+                                                        @case($coment->estrela == 2)
+                                                            <i class="zmdi zmdi-star zmdi-star-half"></i>
+                                                            <i class="zmdi zmdi-star zmdi-star-half"></i>
+                                                            <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                            <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                            <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                            @break
+                                                        @case($coment->estrela == 3)
+                                                            <i class="zmdi zmdi-star zmdi-star-half"></i>
+                                                            <i class="zmdi zmdi-star zmdi-star-half"></i>
+                                                            <i class="zmdi zmdi-star zmdi-star-half"></i>
+                                                            <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                            <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                            @break
+                                                        @case($coment->estrela == 4)
+                                                            <i class="zmdi zmdi-star zmdi-star-half"></i>
+                                                            <i class="zmdi zmdi-star zmdi-star-half"></i>
+                                                            <i class="zmdi zmdi-star zmdi-star-half"></i>
+                                                            <i class="zmdi zmdi-star zmdi-star-half"></i>
+                                                            <i class="item-rating pointer zmdi zmdi-star-outline"></i>
+                                                            @break
+                                                        @case($coment->estrela == 5)
+                                                            <i class="zmdi zmdi-star zmdi-star-half"></i>
+                                                            <i class="zmdi zmdi-star zmdi-star-half"></i>
+                                                            <i class="zmdi zmdi-star zmdi-star-half"></i>
+                                                            <i class="zmdi zmdi-star zmdi-star-half"></i>
+                                                            <i class="zmdi zmdi-star zmdi-star-half"></i>
+                                                            @break
+                                                    @endswitch
 													</span>
+
                                                 @endif
                                             </div>
 

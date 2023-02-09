@@ -20,16 +20,25 @@
                     @endif
                     @if(Auth::check())
                             <a href="" class="flex-c-m trans-04 p-lr-25">
-                                Bem vindo de volta {{auth()->user()->name}}!
-                            </a>
-                            <a href="{{ route('profile.show') }}" class="flex-c-m trans-04 p-lr-25">
-                                Minha conta
-                            </a>
-                            <form method="POST" action="{{ route('logout') }}" class="flex-c-m trans-04 p-lr-25 right-top-bar a">
-                                @csrf
-                                <button type="submit" class="btn-logout">Logout</button>
+                                Bem vindo de volta
 
-                            </form>
+                            </a>
+                            <div class="dropdown">
+                                <a class="dropdown-toggle flex-c-m trans-04 p-lr-25 " type="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #b2b2b2">
+                                    {{auth()->user()->name}}
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark" style="    z-index: 9999;">
+                                    <li><a class="dropdown-item" href="{{ route('perfil') }}">Minha conta</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('compra_historico') }}">Minhas compras</a></li>
+                                    <li><form method="POST" action="{{ route('logout') }}" class="flex-c-m trans-04 p-lr-25 right-top-bar a" style="justify-content: flex-start;">
+                                            @csrf
+                                            <button type="submit" class="btn-logout">Logout</button>
+
+                                        </form></li>
+                                </ul>
+                            </div>
+
+
                         @endif
                 </div>
             </div>

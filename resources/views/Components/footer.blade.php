@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-6 col-lg-4 p-b-50">
-              <img src="{{asset('images/icons/logo.png')}}" class="img-fluid">
+{{--              <img src="{{asset('images/icons/logo.png')}}" class="img-fluid">--}}
             </div>
 
             <div class="col-sm-6 col-lg-3 p-b-50">
@@ -86,3 +86,8 @@
         </div>
     </div>
 </footer>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+<a href="https://wa.me/5599999999999" style="position:fixed;width:60px;height:60px;bottom:40px;right:40px;background-color:#25d366;color:#FFF;border-radius:50px;text-align:center;font-size:30px;box-shadow: 1px 1px 2px #888;
+  z-index:1000;" target="_blank">
+    <i style="margin-top:16px" class="fa fa-whatsapp"></i>
+</a>
