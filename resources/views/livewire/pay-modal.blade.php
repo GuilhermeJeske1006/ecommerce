@@ -1,28 +1,4 @@
-@section('scriptjs')
-    <script type="text/javascript" src="https://stc.sandbox.pagseguro.oul.com.br/pagseguro/api/v2/checkoutz/pagseguro.directpayment.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
-    <script src="https://assets.pagseguro.com.br/checkout-sdk-js/rc/dist/browser/pagseguro.min.js"></script>
-    <script>
-        function carregar(){
-            PagSeguroDirectPayment.setSessionId('{{ $sessionId }}')
-        }
-        $(function(){
-            carregar()
 
-            $(".ncredito").on('blur', function (){
-                PagSeguroDirectPayment.onSenderHashReady(function (response){
-                    if(response.status == "error"){
-                        console.error(response.message);
-                        return false
-                    }
-                    var hash = response.senderHash
-                    $(".hashseller").val(hash)
-
-                })
-            })
-        })
-    </script>
-@endsection
 
 <div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
     <div style="margin-top: 10%">
@@ -79,9 +55,10 @@
                                     </h4>
                                 </div>
                             </div>
+                            <input type="text" name="hashseller">
                             <div class="col-md-12 col-12 d-flex">
                                 <div class="col-6 col-md-6">
-                                    <input type="text" name="hashseller">
+
                                     <div class="bor8 bg0 m-b-12">
                                         <input class=" ncredito stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="ncredito"
                                                placeholder="Numero do cartao">

@@ -34,14 +34,18 @@
                 <div class="col-6 col-md-6">
                     <div class="card" style="border-radius: 8px;">
                         <div class="card-body">
-                            <form>
+                            <form method="POST" action="{{route('edit_perfil')}}">
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" name="id" value="{{auth()->user()->id}}" >
+
                                 <div class="mb-3">
                                     <label for="name" class="form-label">Nome</label>
-                                    <input type="email" class="form-control" wire:model.defer="state.name" autocomplete="name" id="name" aria-describedby="emailHelp">
+                                    <input type="text" class="form-control" name="name" value="{{$usuario->name}}"  id="name">
                                 </div>
                                 <div class="mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email"  wire:model.defer="state.email" class="form-control" id="email" aria-describedby="emailHelp">
+                                    <input type="email" name="email" value="{{$usuario->email}}" class="form-control" id="email" aria-describedby="emailHelp">
                                 </div>
                                 <div class="mb-3">
                                     <div class="row">
@@ -76,7 +80,7 @@
                                     <div class="card-body">
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">Senha atual</label>
-                                            <input type="password" class="form-control" id="current_password" wire:model.defer="state.current_password" autocomplete="current-password" aria-describedby="emailHelp">
+                                            <input type="password" class="form-control" id="current_password" autocomplete="current-password" aria-describedby="emailHelp">
                                         </div>
                                         <div class="mb-3">
                                             <label for="exampleInputEmail1" class="form-label">Nova senha</label>

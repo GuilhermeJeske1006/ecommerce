@@ -34,19 +34,18 @@ class ShopController extends Controller
         $data = [];
 
         $search = \request('search');
+        $listaCategorias = Categoria::all();
 
         if($search){
             $queryProduto = Produto::where([
                 ['nome', 'like', '%'.$search.'%']
-            ]);
-        }else{
-            $queryProduto = Produto::simplePaginate(16);
+            ])->simplePaginate(16);
         }
-
-        $listaCategorias = Categoria::all();
-
-        if($idCategoria != 0){
-            $queryProduto->where("categoria_id", $idCategoria);
+        else if($idCategoria != 0){
+            $queryProduto = Produto::where("categoria_id", $idCategoria)->simplePaginate(16);
+        }
+        else{
+            $queryProduto = Produto::simplePaginate(16);
         }
         $listaProdutos = $queryProduto;
 
@@ -181,7 +180,7 @@ class ShopController extends Controller
         $itens = \Cart::getContent();
 
        $sessionCode = \PagSeguro\Services\Session::create(
-            $this->getCredential()
+           $this->getCredential()
         );
         $IDSession = $sessionCode->getResult();
         $data["sessionId"] = $IDSession;

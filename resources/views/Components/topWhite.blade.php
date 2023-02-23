@@ -28,7 +28,7 @@
                                     {{auth()->user()->name}}
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-dark" style="    z-index: 9999;">
-                                    <li><a class="dropdown-item" href="{{ route('perfil') }}">Minha conta</a></li>
+                                    <li><a class="dropdown-item" href="{{ route('profile.show') }}">Minha conta</a></li>
                                     <li><a class="dropdown-item" href="{{ route('compra_historico') }}">Minhas compras</a></li>
                                     <li><form method="POST" action="{{ route('logout') }}" class="flex-c-m trans-04 p-lr-25 right-top-bar a" style="justify-content: flex-start;">
                                             @csrf

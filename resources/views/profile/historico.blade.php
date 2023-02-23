@@ -34,15 +34,24 @@
                         <div class="rs1-select2 bor8 bg0">
                             <div class="d-flex" style="height: 45px">
                                 <table class="table">
-                                    <thead class="thead-dark">
+                                    <thead>
                                     <tr>
-                                        <th scope="col">Situação</th>
-                                        <th scope="col">Produto</th>
-                                        <th scope="col">Quantidade</th>
-                                        <th scope="col">Valor</th>
+                                        <th scope="col">#</th>
+                                        <th scope="col">First</th>
+                                        <th scope="col">Last</th>
+                                        <th scope="col">Handle</th>
                                     </tr>
                                     </thead>
-
+                                    <tbody>
+                                    @foreach($listaPedido as $pedido)
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                    @endforeach
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

@@ -131,18 +131,3 @@
         flex-direction: row-reverse;
     }
 </style>
-
-<script>
-    function selected(){
-        let checkbox = document.getElementById('cartao_credito');
-        let resul = false;
-        if(checkbox.checked) {
-            console.log(resul = true)
-            resul = true;
-        } else {
-            console.log(resul = false)
-            resul = false
-        }
-    }
-
-</script>

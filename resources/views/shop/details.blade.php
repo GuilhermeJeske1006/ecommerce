@@ -126,7 +126,12 @@
                                     </div>
                                 </div>
                             </div>
+                            <br/>
+                            <button style="    margin-left: 50%; text-align: center"  type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+                                Adicionar ao carrinho
+                            </button>
                         </div>
+
 
                         <div class="flex-w flex-r-m p-b-10">
                             <div class="size-203 flex-c-m respon6" style="    margin-bottom: 5%;">
@@ -159,9 +164,7 @@
                             <input type="hidden" name="foto" value="{{$produto->foto}}">
                             <input type="hidden" name="frete" value="20">
 
-                        <button style="    margin-left: 50%; text-align: center"  type="submit" class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-                            Adicionar ao carrinho
-                        </button>
+
                         </form>
                     </div>
                     @endif
@@ -188,7 +191,7 @@
                             <i class="fa fa-twitter"></i>
                         </a>
 
-                        <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
+                        <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Instagram">
                             <i class="fa fa-instagram"></i>
                         </a>
                     </div>
